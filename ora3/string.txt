@@ -1,0 +1,29 @@
+stringek JS-ben
+A string az egy char tömb, ez egy típus is
+
+metódusok:
+	length -> string hosszát adja vissza
+	concat -> össze concatolsz vmit vmivel 
+	slice -> ugyanaz mint a substring
+	substr -> n-dik elemtől x-et
+	substring -> 7.elem már benne, 13.-ik már bele nincs
+	toUpperCase -> minden nagybetű
+	toLoweCase -> minden kis betű
+	split -> szétvágja vmi által a szöveget
+	trim -> levágja az elejéről és végéről a spacet
+	trimstart -> a végéről levág vmennyit
+	replace -> kicseréli a megadott elemeket
+	
+	charAt() -> visszaadja az elemet az indexnél
+	at() -> támogatja a -1 indexelést
+	CharCodeat -> a karakterkódját adja vissza az indexnél
+	join -> megadja mi legyen minden egyes elem között
+	
+	padStart -> megadott indexig tölti tele a string elejét
+	padEnd -> meddig töltse elemekkel
+	
+	endsWith -> true-val tér vissza ha azzal végződik
+	startWith -> true ha azzal végződik
+	includes -> ha tartalmazza a megadott elemet, true-val
+	
+	valueOf -> visszatér a string értékével
