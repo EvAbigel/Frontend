@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recept Könyv</title>
+</head>
+<body>
+    <script>
+        const receptLekerdez = ()=> new Promise((resolve, reject)=>{
+            setTimeout(() => {
+                const receptID = [8, 92, 12, 475, 32, 668]
+                if(Math.random() > 0.1)
+                    resolve(receptID);
+                reject("Valami hiba történt a receptek lekérése közben");
+            }, 2500);
+
+            
+        });
+
+        const majgaluskaLekerdez = (id) => new Promise((resolve, reject) =>{
+            setTimeout((id) => {
+                const recept ={
+                    id: 92,
+                    cim: "Ízletes májgaluska",
+                    nehezseg: "könnyű",
+                    ido: 30,
+                    koltseg: 500,
+                    kategoria: "Májgaluska leves"
+                };
+
+                resolve(recept);
+            }, 1500);
+        })
+
+        const receptByKategoria = kategoria => new Promise((resolve, reject)=>{
+            setTimeout(() => {
+                const receptID = [92, 34, 128, 311]
+                resolve(receptID);
+            }, 1800);
+        })
+
+        
+
+        const zoldsegesMajgaluskaLekerdez = (id) => new Promise((resolve, reject)=>{
+            setTimeout((id) => {
+                const recept ={
+                    id: 128,
+                    cim: "Zöldségleves májgaluskával",
+                    nehezseg: "könnyű",          
+                    ido: 55,            
+                    koltseg: 700,
+                    kategoria: "Májgaluska leves"            
+                };
+                resolve(recept);                                      
+            }, 1500);
+        })
+
+        
+
+        async function lekerdezes(){
+            const ids= await receptLekerdez();
+            console.log(ids);
+
+            const leves = await majgaluskaLekerdez(ids[1])
+            console.log(leves);
+
+            const kategoriak = await receptByKategoria(leves.kategoria);
+            console.log(kategoriak);
+        };
+
+        lekerdezes()
+        .catch(errorMessage =>{
+            console.log(errorMessage);
+        });
+    </script>
+</body>
+</html>
