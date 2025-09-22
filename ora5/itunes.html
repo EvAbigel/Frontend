@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Itunes zenei alkalmazás</h1>
+
+    <h2>Mit keressek meg:</h2>
+    <input type="text" id="input-keresett">
+    <button id="btn-kereses">Keresés</button>
+    <style>
+        .td-cim{
+            cursor:grabbing;
+        }
+        .td-cim:hover{
+            font-weight: bolder;
+            background-color: azure;
+        }
+    </style>
+
+    <div id="zene-lejatszo">
+        
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <td>Előadó</td>
+                <td>Cím</td>
+                <td>Megjelenés éve</td>
+                <td>Műfaj</td>
+                <td>Zene Hossza</td>
+            </tr>
+        </thead>
+        <tbody id="zenek">
+
+        </tbody>
+    </table>
+    
+    <script src="script.js"></script>
+</body>
+</html>
