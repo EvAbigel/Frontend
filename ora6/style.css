@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url(/ora6/grass.png);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main {
+    width: 500px;
+    background: white;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+
+#cim h1 {
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 700;
+}
+
+#btn-generalas {
+    padding: 10px 18px;
+    font-size: 16px;
+    background-color: #6390F0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#talalat-megjelenit {
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    min-height: 250px;
+    color: white; 
+}
+
+.kep {
+    display: block;
+    margin: 20px auto;
+    height: 150px;
+    filter: drop-shadow(0 0 4px rgba(0,0,0,0.15));
+}
+
+
+#talalat-megjelenit table {
+    margin: 10px auto 20px;
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+
+#talalat-megjelenit td {
+    padding: 8px 15px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-transform: capitalize;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+#stat-table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+    background: white;
+    color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#stat-table td {
+    padding: 10px 8px;
+    border: 1px solid #ddd;
+    font-weight: 600;
+    text-align: center;
+    color: black;
+}
+
+
+#hp {
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+
+#name {
+    font-size: 22px;
+    font-weight: 900;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+}
