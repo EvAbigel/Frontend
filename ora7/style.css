@@ -1,0 +1,24 @@
+#celsius{
+    font-size: 45px;
+    margin-top: 0px;
+}
+
+li{
+    margin-right: 16pt;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+ul{
+    margin-top: 4pt;
+    margin-bottom: 0;
+    padding-left: 16pt;
+    padding-right: 16pt;
+}
+
+#weather-image{
+    margin-left: -5px;
+    box-sizing: border-box;
+}
+
