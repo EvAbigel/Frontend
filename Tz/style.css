@@ -1,0 +1,54 @@
+body{
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    
+}
+
+#showcase{
+    margin-top: 50px;
+    border: 3px solid orange;
+    border-radius: 15px;
+    background-color: beige;
+    margin: auto;
+    text-align: left;
+    max-width: 240px;
+}
+
+.kep{
+    padding-top: 30px;
+    padding-bottom: 10px;
+    border-radius: 15%;
+
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+
+#name{
+    font-weight: bold;
+    text-align: center;
+    font-size: 17px;
+}
+
+#buttonDiv{
+    height: 200px;
+    position: relative;
+}
+
+#button-keresett{
+    color: white;
+    background-color: orange;
+    border-radius: 5px;
+    width: 230px;
+    height: 40px;
+    font-size: 17px;
+}
+#center{
+    margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
