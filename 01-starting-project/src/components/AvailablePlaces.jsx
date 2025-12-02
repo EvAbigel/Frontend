@@ -1,32 +1,42 @@
 import { useEffect, useState } from 'react';
 import Places from './Places.jsx';
+import Error from './error.jsx';
  
 export default function AvailablePlaces({ onSelectPlace }) {
   const [isFeching, setIsFeching] = useState(false);
   const [availablePlaces, setAvailablePlaces] = useState([]);
- 
+  const [error, setError] = useState();
  
   useEffect(() => {
     async function getPlaces(){
       setIsFeching(true)
-      const response = await fetch('http://localhost:3000/places')
-      const resData = await response.json()
-      setAvailablePlaces(resData.places);
+      try{
+        const response = await fetch('http://localhost:3000/places');
+        if(!response.ok){
+          throw response.statusText;
+        }
+
+        const resData = await response.json()
+        setAvailablePlaces(resData.places);
+      }
+      catch(error){
+        setError(error);
+      }
+ 
       setIsFeching(false);
     }
  
     getPlaces();
   } ,[]);
 
- 
-  // setIsFeching(true)
-    // fetch('http://localhost:3000/places')
-    // .then(response => response.json())
-    // .then(resdata => {
-    //   setAvailablePlaces(resdata.places);
-    //   setIsFeching(false);
-    // })
- 
+  function handleConfirm(){
+    setError(null);
+  }
+
+  if(error){
+    return <Error title={"An error occured!"} message={error} onConfirm={handleConfirm}/>
+  }
+
   return (
     <Places
       title="Available Places"

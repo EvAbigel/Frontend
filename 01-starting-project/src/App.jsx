@@ -1,38 +1,50 @@
-import { useRef, useState, useCallback } from 'react';
-
+import { useRef, useState, useCallback, useEffect } from 'react';
+ 
 import Places from './components/Places.jsx';
 import Modal from './components/Modal.jsx';
 import DeleteConfirmation from './components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
 import AvailablePlaces from './components/AvailablePlaces.jsx';
-import { useEffect } from 'react';
-
+ 
 function App() {
   const selectedPlace = useRef();
-
-  const [userPlaces, setUserPlaces] = useState([]);
-
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  useEffect(()=>{
+ 
+  useEffect(()=> {
     async function getUserPlaces(){
-      const response = await fetch("http://localhost:3000/user-places");
-      const resData = await response.json();
-      setUserPlaces(resData.places)
+      const response = await fetch('http://localhost:3000/user-places')
+      const resData = await response.json()
+      setUserPlaces(resData.places);
     }
-
     getUserPlaces();
   }, []);
-
+ 
+  const [userPlaces, setUserPlaces] = useState([]);
+ 
+ 
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+ 
   function handleStartRemovePlace(place) {
     setModalIsOpen(true);
     selectedPlace.current = place;
   }
-
+ 
   function handleStopRemovePlace() {
     setModalIsOpen(false);
   }
-
+ 
+  async function updateUserPlaces(places){
+    const response = await fetch("http://localhost:3000/user-places", {
+      method: "PUT",
+      body: JSON.stringify({places: places}),
+      headers: {
+        'Content-Type': 'Application/json'
+      }
+    });
+    const restData = await response.json();
+    console.log(restData);
+   
+  }
+ 
   function handleSelectPlace(selectedPlace) {
     setUserPlaces((prevPickedPlaces) => {
       if (!prevPickedPlaces) {
@@ -41,33 +53,23 @@ function App() {
       if (prevPickedPlaces.some((place) => place.id === selectedPlace.id)) {
         return prevPickedPlaces;
       }
-      updateUserPlaces([selectedPlace, ...userPlaces]);
+      updateUserPlaces([selectedPlace, ...prevPickedPlaces]);
       return [selectedPlace, ...prevPickedPlaces];
     });
-
-
-    async function updateUserPlaces(places){
-      const response = await fetch('http://localhost:3000/user-places', {
-        method: 'PUT',
-        body: JSON.stringify({places: places}),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-
-      const resData = await response.json();
-      console.log(resData)
-    }
   }
-
+ 
   const handleRemovePlace = useCallback(async function handleRemovePlace() {
-    setUserPlaces((prevPickedPlaces) =>
-      prevPickedPlaces.filter((place) => place.id !== selectedPlace.current.id)
+    setUserPlaces((prevPickedPlaces) =>{
+      updateUserPlaces(prevPickedPlaces.filter((place) => place.id !== selectedPlace.current.id))
+      return prevPickedPlaces.filter((place) => place.id !== selectedPlace.current.id)
+    }
     );
-
+ 
+   
+ 
     setModalIsOpen(false);
   }, []);
-
+ 
   return (
     <>
       <Modal open={modalIsOpen} onClose={handleStopRemovePlace}>
@@ -76,7 +78,7 @@ function App() {
           onConfirm={handleRemovePlace}
         />
       </Modal>
-
+ 
       <header>
         <img src={logoImg} alt="Stylized globe" />
         <h1>PlacePicker</h1>
@@ -92,11 +94,13 @@ function App() {
           places={userPlaces}
           onSelectPlace={handleStartRemovePlace}
         />
-
+ 
         <AvailablePlaces onSelectPlace={handleSelectPlace} />
       </main>
     </>
   );
 }
-
+ 
 export default App;
+
+//handleselect, handleremove -> 1x hibakezelés az updateuserplaces miatt
