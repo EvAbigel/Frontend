@@ -1,0 +1,30 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+
+.dog-div{
+  margin: auto;
+  border-radius: 7px;
+  border: solid rgb(226, 203, 99) 7px;
+  background-color: white;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.dog-div img{
+  width: 400px;
+  height: auto;
+}
+
+.dogs-div{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+body{
+  background-color: rgb(59, 59, 66);
+}
