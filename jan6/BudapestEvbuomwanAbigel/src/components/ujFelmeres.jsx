@@ -14,8 +14,36 @@ export default function UjFelmeres(){
     const szlovakInput = useRef("")
     const egyebInput = useRef("")
 
+    const [isValid, setIsValid] = useState({
+        magyar: false,
+        nemet: false,
+        szlovak: false,
+        egyeb: false
+    })
+
+    const [isEdit, setIsEdited] = useState({
+        magyar: false,
+        nemet: false,
+        szlovak: false,
+        egyeb: false
+    })
+
+
+    function inputValidate(inputText, inputName){
+        setIsValid(prev =>({
+            ...prev,
+            [inputName]: inputText.length > 0
+        }))
+
+        setIsEdited(prev =>({
+            ...prev,
+            [inputName]: true,
+        }))
+    }
+
     async function onSave(){
-        const ujFelmeres = {
+        if (isValid.magyar && isValid.nemet && isValid.szlovak && isValid.egyeb){
+            const ujFelmeres = {
             evszam: parseInt(evszamInput.current.value),
             magyar: parseInt(magyarInput.current.value),
             nemet: parseInt(nemetInput.current.value),
@@ -36,7 +64,9 @@ export default function UjFelmeres(){
         catch(e){
             console.log(e); 
         }
-    }
+    }}
+
+    //üres lakosság, ugyanolyan évszám, üres mező validálás
 
     return (
         <div className="container">
@@ -44,35 +74,47 @@ export default function UjFelmeres(){
             <div className="row">
                     <div className="offset-lg-3 offset-md-2 col-lg-6 col-md-8 col-12">
 
-                    <div className="mb-3">
-                        <label htmlFor="date" className="form-label">Felmérés dátuma</label>
+                    <form onSubmit={onSave}>
+
+                        <div className="mb-3">
+                        <div className="row">
+                            <div className="col-6 text-start">
+                                <label htmlFor="date" className="form-label">Felmérés dátuma</label>
+                            </div>
+                            <div className="col-6 text-end">
+                                {   } 
+                            </div>
+                        </div> 
                         <input ref={evszamInput} type="date" className="form-control" name="erkezes" defaultValue={ev}/>
-                    </div>
+                        </div>
 
-                    <div className="mb-3">
-                        <label htmlFor="faj"> Magyarok mennyisége </label>
-                        <input ref={magyarInput} className="form-control" type="text" id="magyar" name="magyar"/>
-                    </div>
+                        <div className="mb-3">
+                            <label htmlFor="faj"> Magyarok mennyisége </label>
+                            <input ref={magyarInput} className="form-control" type="text" id="magyar" name="magyar"/>
+                        </div>
 
-                    <div className="mb-3">
-                        <label htmlFor="faj"> Németek mennyisége </label>
-                        <input ref={nemetInput} className="form-control" type="text" id="nemet" name="nemet"/>
-                    </div>
+                        <div className="mb-3">
+                            <label htmlFor="faj"> Németek mennyisége </label>
+                            <input ref={nemetInput} className="form-control" type="text" id="nemet" name="nemet"/>
+                        </div>
 
-                    <div className="mb-3">
-                        <label htmlFor="faj"> Szlovákok mennyisége </label>
-                        <input ref={szlovakInput} className="form-control" type="text" id="szlovak" name="szlovak"/>
-                    </div>
+                        <div className="mb-3">
+                            <label htmlFor="faj"> Szlovákok mennyisége </label>
+                            <input ref={szlovakInput} className="form-control" type="text" id="szlovak" name="szlovak"/>
+                        </div>
 
-                    <div className="mb-3">
-                        <label htmlFor="faj"> Egyéb mennyisége </label>
-                        <input ref={egyebInput} className="form-control" type="text" id="egyeb" name="egyeb"/>
-                    </div>
+                        <div className="mb-3">
+                            <label htmlFor="faj"> Egyéb mennyisége </label>
+                            <input ref={egyebInput} className="form-control" type="text" id="egyeb" name="egyeb"/>
+                        </div>
 
-                    
-                    <div className="mb-3 text-center">
-                        <button onClick={onSave} className="btn btn-primary px-5">Felvétel</button>
-                    </div>
+                        
+                        <div className="mb-3 text-center">
+                            <button className="btn btn-primary px-5">Felvétel</button>
+                        </div>
+
+
+                    </form>
 
                 </div>
             </div>
